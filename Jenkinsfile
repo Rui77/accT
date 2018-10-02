@@ -9,7 +9,7 @@ node {
 			sh 'mvn clean package sonar:sonar'
 			echo "${env.adop}"
 			echo "ola"
-			echo %USERNAME%
+			//echo %USERNAME%
 		}
 
 			
