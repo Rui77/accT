@@ -9,7 +9,12 @@ node {
 			sh 'mvn clean package sonar:sonar'
 			echo "${env.adop}"
 			echo "ola"
-			//echo %USERNAME%
+			 def scannerCmd = "sonar-scanner -e";
+			scannerCmd += " -Dhttps.proxyHost=ec2-34-247-207-180.eu-west-1.compute.amazonaws.com";
+			scannerCmd += " -Dhttp.proxyHost=ec2-34-247-207-180.eu-west-1.compute.amazonaws.com"";
+			scannerCmd += " -Dsonar.login=${env.USERNAME}";
+			scannerCmd += " -Dsonar.password=${env.PASSWORD}";";
+			echo "${scannerCmd}"
 		}
 
 			
