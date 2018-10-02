@@ -6,19 +6,16 @@ node {
   }
   
   stage('SonarQube analysis') {
-  withMaven(maven: 'Maven 3.5.2') {
+	withMaven(maven: 'Maven 3.5.2') {
       withSonarQubeEnv('ADOP Sonar') {
 		
-      sh 'mvn clean package sonar:sonar'
-    } // SonarQube taskId is automatically attached to the pipeline context
-}
-
-  
+			sh 'mvn clean package sonar:sonar'
+		} // SonarQube taskId is automatically attached to the pipeline context
+	}
   
   }
-}
-
-stage("Quality Gate"){
+  
+  stage("Quality Gate"){
   timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
     def qg = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
     if (qg.status != 'OK') {
@@ -26,3 +23,6 @@ stage("Quality Gate"){
     }
   }
 }
+  
+}
+
