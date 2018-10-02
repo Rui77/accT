@@ -3,6 +3,11 @@ node {
     git 'https://github.com/Rui77/accT'
   }
   stage('SonarQube analysis') {
+  
+	withMaven(maven: 'Maven 3.5.2') {
+		sh 'mvn clean install'
+	}
+  
     withSonarQubeEnv('ADOP Sonar') {
 		
       sh 'mvn clean package sonar:sonar'
