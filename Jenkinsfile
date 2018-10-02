@@ -16,8 +16,9 @@ node {
   withCredentials([usernamePassword(credentialsId: 'adop', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
 		echo 'teste'
 		timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
+		echo "depois"
     def qg = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
-	echo "depois"
+	
     if (qg.status != 'OK') {
 		echo "Erro"
       error "Pipeline aborted due to quality gate failure: ${qg.status}"
