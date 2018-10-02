@@ -8,6 +8,7 @@ node {
 		withCredentials([usernamePassword(credentialsId: 'adop', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
 			sh 'mvn clean package sonar:sonar'
 			echo "${env.USERNAME}"
+			echo "ola"
 		}
 
 			
