@@ -1,9 +1,10 @@
 node {
   stage('SCM') {
-    git 'https://github.com/foo/bar.git'
+    git 'https://github.com/Rui77/accT'
   }
   stage('SonarQube analysis') {
-    withSonarQubeEnv('My SonarQube Server') {
+    withSonarQubeEnv('ADOP Sonar') {
+		
       sh 'mvn clean package sonar:sonar'
     } // SonarQube taskId is automatically attached to the pipeline context
   }
