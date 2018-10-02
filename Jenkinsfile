@@ -1,12 +1,18 @@
 node {
+
+ 
   stage('SCM') {
     git 'https://github.com/Rui77/accT'
   }
+  
+  stage('build'){
+	steps {
+        sh 'mvn --version'
+        sh 'mvn install'
+		}
+  }
   stage('SonarQube analysis') {
   
-	withMaven(maven: 'Maven 3.5.2') {
-		sh 'mvn clean install'
-	}
   
     withSonarQubeEnv('ADOP Sonar') {
 		
