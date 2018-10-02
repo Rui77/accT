@@ -1,9 +1,6 @@
 node {
 	
-  tools {
-		maven 'Maven 3.5.2'
-	}
- 
+
   stage('SCM') {
     git 'https://github.com/Rui77/accT'
   }
